@@ -1,122 +1,100 @@
 # ReviewRadar AI – Intelligent Customer Feedback Analysis
 
-An NLP and Machine Learning project designed to analyze customer reviews, identify recurring complaints, discover product-related issues, and generate actionable business insights.
+An end-to-end Machine Learning and Natural Language Processing project that analyzes customer reviews, discovers recurring feedback themes, identifies customer dissatisfaction, and prioritizes product-related issues to support data-driven business decisions.
 
 ## Project Overview
 
-ReviewRadar AI aims to transform unstructured customer feedback into meaningful business intelligence.
+ReviewRadar AI transforms unstructured customer reviews into meaningful business insights.
 
-Businesses receive large volumes of customer reviews, making it difficult to manually identify recurring problems and understand customer satisfaction.
+The system aims to help businesses understand:
+- What customers appreciate about their products.
+- What problems customers frequently mention.
+- Which product-related issues require attention.
+- How customer satisfaction differs across feedback themes.
+- Which issues should receive higher business priority.
 
-This project explores how Natural Language Processing (NLP), Machine Learning, and data visualization can help businesses understand customer feedback more effectively.
+The project combines data analysis, Natural Language Processing (NLP), Machine Learning, and interactive visualization.
 
-### Project Objectives
+## Objectives
 
-- Analyze customer reviews and satisfaction levels.
-- Identify recurring customer complaints and feedback themes.
-- Discover product-related issues using NLP techniques.
-- Classify customer sentiment.
-- Prioritize important customer issues.
-- Generate evidence-based business recommendations.
-- Present insights through an interactive dashboard.
-
-## Technologies Used
-
-| Technology | Purpose |
-|---|---|
-| Python | Main programming language |
-| Pandas | Data manipulation and cleaning |
-| NumPy | Numerical operations |
-| Scikit-learn | Machine Learning and NLP |
-| TF-IDF | Text feature extraction |
-| NMF | Topic modelling |
-| Logistic Regression | Sentiment classification |
-| Matplotlib | Data visualization |
-| Seaborn | Statistical visualization |
-| Plotly | Interactive visualizations |
-| Streamlit | Interactive dashboard |
+1. Clean and prepare customer review data.
+2. Perform Exploratory Data Analysis (EDA).
+3. Discover recurring customer feedback themes using topic modelling.
+4. Analyze satisfaction levels across discovered topics.
+5. Prioritize customer issues using a weighted scoring approach.
+6. Develop a machine learning model for sentiment classification.
+7. Build an interactive dashboard to communicate business insights.
+8. Generate actionable business recommendations.
 
 ## Dataset
 
 **Dataset:** Women's E-Commerce Clothing Reviews
 
+**Source:** Kaggle
+
 The dataset contains customer reviews and product-related information.
 
-### Original Dataset Information
-
-- Total records: 23,486
-- Original columns: 11
-- Average customer rating: 4.2/5
-
-### Main Dataset Attributes
-
-- Clothing ID
-- Age
-- Title
+Important attributes include:
 - Review Text
 - Rating
 - Recommended IND
-- Positive Feedback Count
-- Division Name
 - Department Name
 - Class Name
+- Title
+- Positive Feedback Count
 
-## Project Development Progress
-
-### Day 1 – Project Setup and Environment Configuration
-
-**Status: Completed**
-
-Activities:
-- Created the ReviewRadar AI project.
-- Established the project folder structure.
-- Configured the Python development environment.
-- Created and activated a Python virtual environment.
-- Installed the required Python libraries.
-- Prepared the project for data analysis and machine learning development.
-
-**Development environment:**
-- Python 3.13.17
-- Visual Studio Code
-- Windows 11
-- Python virtual environment (`.venv`)
-
-### Day 2 – Data Cleaning and Exploratory Data Analysis (EDA)
-
-**Status: Completed**
-
-The second milestone focused on understanding the dataset, examining data quality, cleaning the data, and identifying initial customer satisfaction patterns.
-
-#### 1. Data Inspection
-
-- Loaded 23,486 customer reviews.
-- Examined the dataset structure and column information.
-- Inspected the first five records.
-- Identified missing values.
-- Checked duplicate records.
-
-#### 2. Data Cleaning
-
-- Standardized column names.
-- Checked and removed duplicate records.
-- Converted and examined rating values.
-- Created a cleaned review text column.
-- Retained records with missing review text for non-text-based analysis.
-
-**Cleaning results:**
+### Dataset Summary
 
 | Metric | Result |
 |---|---:|
-| Original records | 23,486 |
-| Records after cleaning | 23,486 |
-| Duplicate records removed | 0 |
+| Total reviews | 23,486 |
+| Original columns | 11 |
+| Duplicate rows | 0 |
 | Missing review texts | 845 |
-| Missing titles | 3,810 |
-| Missing department values | 14 |
+| Usable review texts for NLP | 22,641 |
 
-Missing review texts will be excluded from subsequent NLP processing.
+Empty review texts were excluded from NLP processing while retaining the corresponding records for other analyses.
 
-#### 3. Customer Rating Analysis
+## Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Python | Main programming language |
+| Pandas | Data manipulation and analysis |
+| NumPy | Numerical operations |
+| Scikit-learn | Machine learning and NLP |
+| TF-IDF | Text feature extraction |
+| NMF | Topic modelling |
+| Matplotlib | Data visualization |
+| Seaborn | Statistical visualization |
+| Plotly | Interactive visualizations |
+| Streamlit | Interactive dashboard |
+
+## Project Progress
+
+### Day 1 – Project Setup
+
+- Created the ReviewRadar AI project structure.
+- Configured the Python virtual environment.
+- Installed the required Python libraries.
+- Organized project directories for data, notebooks, and reports.
+- Created the initial README and `.gitignore`.
+
+### Day 2 – Data Cleaning and Exploratory Data Analysis
+
+Performed data cleaning and exploratory analysis on the Women's E-Commerce Clothing Reviews dataset.
+
+**Key findings:**
+
+- Analyzed 23,486 customer reviews.
+- Identified 845 missing review texts.
+- Found no duplicate rows.
+- Prepared the cleaned dataset for further analysis.
+- Examined customer ratings and recommendation patterns.
+- Analyzed average ratings across product departments.
+- Generated visualizations for rating and recommendation distributions.
+
+**Rating distribution:**
 
 | Rating | Number of Reviews |
 |---|---:|
@@ -126,66 +104,125 @@ Missing review texts will be excluded from subsequent NLP processing.
 | 4 Stars | 5,077 |
 | 5 Stars | 13,131 |
 
-**Average customer rating: 4.2/5**
+**Additional findings:**
 
-The dataset contains a relatively high number of positive customer ratings, with five-star reviews representing the largest group.
+- Overall average rating: 4.2
+- Recommended reviews: 19,314
+- Non-recommended reviews: 4,172
+- Approximately 82.2% of reviews recommended the products.
 
-#### 4. Product Recommendation Analysis
-
-| Recommendation | Number of Reviews |
-|---|---:|
-| Recommended | 19,314 |
-| Not Recommended | 4,172 |
-
-Approximately 82.2% of the reviews indicate that customers recommended the products.
-
-#### 5. Department-Level Analysis
-
-| Department | Review Count | Average Rating |
-|---|---:|---:|
-| Bottoms | 3,799 | 4.29 |
-| Intimate | 1,735 | 4.28 |
-| Jackets | 1,032 | 4.26 |
-| Tops | 10,468 | 4.17 |
-| Dresses | 6,319 | 4.15 |
-| Trend | 119 | 3.82 |
-
-The Trend department recorded the lowest average rating (3.82), while Bottoms recorded the highest average rating (4.29) among the listed departments.
-
-The Trend department also has a considerably smaller review volume, which should be considered when interpreting this result.
-
-#### 6. Visualizations Generated
-
-The following visualizations were generated during EDA:
-
-- Customer rating distribution
-- Product recommendation distribution
-- Department-wise average ratings
-- Product class average ratings
-
-**Visualization files:**
-
+**Generated outputs:**
+- `cleaned_reviews.csv`
+- `department_summary.csv`
+- `class_summary.csv`
 - `rating_distribution.png`
 - `recommendation_distribution.png`
 - `department_ratings.png`
 - `class_ratings.png`
 
-All generated charts are available in `reports/figures/`.
+### Day 3 – Customer Feedback Theme Analysis and Issue Prioritization
 
-#### 7. Day 2 Deliverables
+Applied Natural Language Processing and Non-negative Matrix Factorization (NMF) to discover recurring themes in customer reviews.
 
-- Cleaned dataset
-- Department summary
-- Product class summary
-- Data cleaning and EDA Python script
-- Four data visualizations
+**1. Text Processing and Feature Extraction**
 
-**Output files:**
+- Prepared customer review text for NLP analysis.
+- Excluded 845 empty review texts.
+- Used TF-IDF Vectorization to convert review text into numerical features.
+- Configured the vectorizer with a maximum of 3,000 features and unigrams and bigrams.
+- Generated a TF-IDF matrix with 22,641 reviews and 3,000 features.
 
-- `data/processed/cleaned_reviews.csv`
-- `data/processed/department_summary.csv`
-- `data/processed/class_summary.csv`
-- `reports/figures/`
+**2. Topic Modelling**
+
+Applied NMF with eight components to identify recurring customer feedback themes.
+
+Eight topics were discovered and manually assigned business-friendly labels after reviewing their keywords and representative reviews.
+
+| Topic | Discovered Theme | Reviews | Percentage |
+|---|---|---:|---:|
+| 1 | General Product Feedback | 3,975 | 17.56% |
+| 2 | Dress Design & Appearance | 3,645 | 16.10% |
+| 3 | Comfort & Wearability | 4,445 | 19.63% |
+| 4 | Size Accuracy & Fit | 2,078 | 9.18% |
+| 5 | Sizing & Size Selection | 3,168 | 13.99% |
+| 6 | Shirt Design & Material | 1,551 | 6.85% |
+| 7 | Sweater & Outerwear Feedback | 1,706 | 7.54% |
+| 8 | Product Quality & Appearance | 2,073 | 9.16% |
+| **Total** | **8 Topics** | **22,641** | **100%** |
+
+**3. Topic Satisfaction Analysis**
+
+Analyzed average ratings and non-recommendation percentages across the eight discovered topics.
+
+| Customer Feedback Theme | Average Rating | Non-Recommended |
+|---|---:|---:|
+| General Product Feedback | 3.59 | 36.23% |
+| Dress Design & Appearance | 4.14 | 19.97% |
+| Comfort & Wearability | 4.64 | 6.16% |
+| Size Accuracy & Fit | 4.42 | 10.01% |
+| Sizing & Size Selection | 4.06 | 18.88% |
+| Shirt Design & Material | 3.97 | 23.92% |
+| Sweater & Outerwear Feedback | 4.20 | 18.82% |
+| Product Quality & Appearance | 4.53 | 7.77% |
+
+**Key insights:**
+
+- General Product Feedback showed the highest dissatisfaction, with a 36.23% non-recommendation rate and a 3.59 average rating.
+- Shirt Design & Material also showed an area of concern, with a 23.92% non-recommendation rate.
+- Sizing & Size Selection showed potential sizing-related customer dissatisfaction.
+- Comfort & Wearability performed positively, with a 4.64 average rating and only 6.16% non-recommendation.
+
+**4. Representative Review Extraction**
+
+Extracted representative customer reviews for each discovered topic to provide qualitative evidence behind the topic classifications.
+
+This helps connect numerical analysis with actual customer experiences.
+
+**5. Issue Prioritization**
+
+Developed a weighted issue-prioritization approach using three factors:
+
+- Review Volume
+- Non-Recommended Percentage
+- Rating Dissatisfaction
+
+The project-defined priority formula is:
+
+`Priority Score = (0.4 × V) + (0.4 × N) + (0.2 × D)`
+
+Where:
+
+- V = Normalized review volume
+- N = Non-recommendation percentage
+- D = Normalized rating dissatisfaction
+
+Each factor is normalized to a 0–100 scale before calculating the final score.
+
+**Issue Priority Ranking:**
+
+| Rank | Customer Feedback Theme | Priority Score |
+|---:|---|---:|
+| 1 | General Product Feedback | 93.50 |
+| 2 | Dress Design & Appearance | 56.84 |
+| 3 | Sizing & Size Selection | 50.32 |
+| 4 | Comfort & Wearability | 40.00 |
+| 5 | Shirt Design & Material | 36.39 |
+| 6 | Sweater & Outerwear Feedback | 27.36 |
+| 7 | Size Accuracy & Fit | 16.60 |
+| 8 | Product Quality & Appearance | 11.45 |
+
+**Business interpretation:**
+
+General Product Feedback received the highest priority score. Its high dissatisfaction level indicates that the business should investigate the specific complaints represented in this topic, such as fabric quality, product fit, and value for money.
+
+This prioritization method is a project-defined decision-support heuristic and does not represent a statistically validated business-risk score.
+
+**Generated Day 3 outputs:**
+- `topic_summary.csv`
+- `review_topic_assignments.csv`
+- `representative_reviews.csv`
+- `topic_satisfaction.csv`
+- `issue_priority_report.csv`
 
 ## Project Structure
 
@@ -199,100 +236,139 @@ ReviewRadar-AI/
 │   └── processed/
 │       ├── cleaned_reviews.csv
 │       ├── department_summary.csv
-│       └── class_summary.csv
+│       ├── class_summary.csv
+│       ├── topic_summary.csv
+│       ├── review_topic_assignments.csv
+│       ├── representative_reviews.csv
+│       ├── topic_satisfaction.csv
+│       └── issue_priority_report.csv
 │
 ├── notebooks/
-│   └── cleaning_eda.py
+│   ├── cleaning_eda.py
+│   ├── theme_analysis.py
+│   └── issue_prioritization.py
 │
 ├── reports/
 │   └── figures/
-│       ├── rating_distribution.png
-│       ├── recommendation_distribution.png
-│       ├── department_ratings.png
-│       └── class_ratings.png
 │
+├── .gitignore
 ├── README.md
-└── .gitignore
+└── requirements.txt
 ```
 
-## Installation and Setup
+Note: Raw and processed CSV files are excluded from Git tracking according to the project's `.gitignore` rules.
 
-### 1. Clone the Repository
+## How to Run the Project
+
+### 1. Clone the repository
 
 ```bash
 git clone YOUR_GITHUB_REPOSITORY_URL
 ```
 
-### 2. Navigate to the Project Directory
+### 2. Navigate to the project directory
 
 ```bash
 cd ReviewRadar-AI
 ```
 
-### 3. Create a Virtual Environment
+### 3. Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-### 4. Activate the Virtual Environment
+### 4. Activate the virtual environment
 
-For Windows PowerShell:
+**Windows PowerShell:**
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 5. Install Dependencies
+### 5. Install dependencies
 
 ```bash
-pip install pandas numpy scikit-learn matplotlib seaborn plotly streamlit
+pip install -r requirements.txt
 ```
 
-### 6. Add the Dataset
-
-Place the dataset in:
-
-```text
-data/raw/clothing_reviews.csv
-```
-
-### 7. Run the EDA Script
+### 6. Run the analysis scripts
 
 ```bash
 python notebooks/cleaning_eda.py
 ```
 
-## Upcoming Development Milestones
+```bash
+python notebooks/theme_analysis.py
+```
 
-| Milestone | Planned Activities | Status |
-|---|---|---|
-| Day 1 | Project setup and environment configuration | Completed |
-| Day 2 | Data cleaning and exploratory data analysis | Completed |
-| Day 3 | Customer complaint and theme analysis | In Progress |
-| Day 4 | Sentiment classification and model development | Planned |
-| Day 5 | Model evaluation and issue prioritization | Planned |
-| Day 6 | Interactive dashboard development | Planned |
-| Day 7 | Business recommendations and final documentation | Planned |
+```bash
+python notebooks/issue_prioritization.py
+```
 
-## Expected Final Outcome
+Make sure the original dataset is placed inside `data/raw/` before running the scripts.
 
-The final application aims to provide:
+## Upcoming Development
 
-- Customer sentiment insights.
-- Recurring complaint identification.
-- Product issue categorization.
-- Evidence-based issue prioritization.
-- Representative customer feedback.
-- Business improvement recommendations.
-- An interactive customer feedback analytics dashboard.
+### Day 4 – Sentiment Classification
+- Prepare labelled sentiment data.
+- Develop a sentiment classification model.
+- Train and test the model.
+- Evaluate model performance using suitable classification metrics.
+
+### Day 5 – Model Evaluation and Improvement
+- Analyze model performance.
+- Examine misclassified reviews.
+- Improve model reliability.
+- Compare relevant evaluation metrics.
+
+### Day 6 – Interactive Dashboard
+- Develop an interactive Streamlit dashboard.
+- Display customer satisfaction insights.
+- Visualize discovered topics and issue priorities.
+- Allow users to explore customer feedback.
+
+### Day 7 – Business Recommendations and Finalization
+- Generate actionable business recommendations.
+- Complete project documentation.
+- Prepare the final GitHub portfolio presentation.
+
+## Limitations
+
+- Topic labels are manually interpreted descriptions of the NMF-discovered topics.
+- The priority score is a project-defined heuristic.
+- Review ratings and recommendation indicators are used as satisfaction signals.
+- Topic associations do not establish the actual causes of customer dissatisfaction.
+- The dataset does not currently support time-based trend analysis in this project.
 
 ## Project Status
 
-**Currently completed:** Project setup, data cleaning, and exploratory data analysis.
+**Current progress: Day 3 completed**
 
-Further NLP, machine learning, and dashboard development will be documented as the project progresses.
+- [x] Project setup
+- [x] Data cleaning
+- [x] Exploratory Data Analysis
+- [x] TF-IDF feature extraction
+- [x] NMF topic modelling
+- [x] Topic satisfaction analysis
+- [x] Representative review extraction
+- [x] Issue prioritization
+- [ ] Sentiment classification
+- [ ] Model evaluation
+- [ ] Interactive dashboard
+- [ ] Business recommendations
+- [ ] Final documentation
+
+## Author
+
+**Hamna Fazil**
+
+Aspiring Data Analyst | Business Intelligence | Machine Learning
+
+GitHub: [HamnaFazil](https://github.com/HamnaFazil)
+
+Portfolio: [Personal Portfolio](https://hamnafazil.github.io/HamnaFazil/)
 
 ---
 
-*ReviewRadar AI – Turning Customer Feedback into Business Intelligence.*
+*ReviewRadar AI – Turning customer feedback into actionable business intelligence.*
