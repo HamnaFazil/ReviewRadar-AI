@@ -1,0 +1,9 @@
+{
+    "Model": "Complement Naive Bayes",
+    "Accuracy": 0.779200706557739,
+    "Macro_Precision": 0.5821144112058713,
+    "Macro_Recall": 0.6433301032710506,
+    "Macro_F1": 0.604915100106847,
+    "Weighted_F1": 0.7954861835985647,
+    "Best_Model": "Complement Naive Bayes"
+}
