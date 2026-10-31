@@ -1,251 +1,188 @@
 # ReviewRadar AI – Intelligent Customer Feedback Analysis
 
-An end-to-end Machine Learning and Natural Language Processing (NLP) project that analyzes customer reviews, discovers recurring feedback themes, identifies customer dissatisfaction, and prioritizes product-related issues to support data-driven business decisions.
-
 ## Project Overview
 
-ReviewRadar AI transforms unstructured customer reviews into meaningful business insights.
+ReviewRadar AI is a machine learning and natural language processing project designed to analyze customer reviews, identify recurring feedback themes, classify customer sentiment, and prioritize potential business improvement areas.
 
-The system aims to help businesses understand:
-
-- What customers appreciate about their products.
-- What problems customers frequently mention.
-- Which product-related issues require attention.
-- How customer satisfaction differs across feedback themes.
-- Whether customer reviews express positive, neutral, or negative sentiment.
-- Which issues should receive higher business priority.
-
-The project combines Python, Data Analysis, NLP, Machine Learning, and Data Visualization.
+The project uses the Women's E-Commerce Clothing Reviews dataset to extract meaningful insights from customer feedback and present them in a business-friendly format.
 
 ## Project Objectives
 
-1. Clean and prepare customer review data.
-2. Perform Exploratory Data Analysis (EDA).
-3. Discover recurring customer feedback themes using topic modelling.
-4. Analyze satisfaction levels across discovered topics.
-5. Prioritize customer issues using a weighted scoring approach.
-6. Develop a machine learning sentiment classification model.
-7. Evaluate model performance using appropriate metrics.
-8. Build an interactive dashboard.
-9. Generate actionable business recommendations.
-10. Present customer feedback insights through a complete analytics solution.
+- Analyze customer ratings and feedback.
+- Clean and prepare customer review data.
+- Identify recurring topics using NLP and topic modelling.
+- Measure satisfaction levels across identified topics.
+- Prioritize issues based on review volume and dissatisfaction.
+- Classify reviews into positive, neutral, and negative sentiment.
+- Generate visual reports to support business decisions.
 
 ## Dataset
 
 **Dataset:** Women's E-Commerce Clothing Reviews
 
-**Source:** Kaggle
+**Original file:** `data/raw/clothing_reviews.csv`
 
-The dataset contains customer reviews and product-related information.
+**Original records:** 23,486 reviews
 
-Important attributes include:
+**Usable text reviews:** 22,641
 
-- Review Text
-- Rating
-- Recommended IND
-- Department Name
-- Class Name
-- Title
-- Positive Feedback Count
+**Empty review texts:** 845
 
-### Dataset Summary
+## Technologies Used
 
-| Metric | Result |
-|---|---:|
-| Total reviews | 23,486 |
-| Original columns | 11 |
-| Duplicate rows | 0 |
-| Missing review texts | 845 |
-| Usable review texts for NLP | 22,641 |
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- TF-IDF
+- Non-negative Matrix Factorization (NMF)
+- Logistic Regression
+- Matplotlib
+- Seaborn
+- Joblib
+- Git and GitHub
 
-Empty review texts were excluded from NLP processing while retaining the corresponding records for other analyses.
+---
 
-## Technology Stack
-
-| Technology | Purpose |
-|---|---|
-| Python | Main programming language |
-| Pandas | Data manipulation and analysis |
-| NumPy | Numerical operations |
-| Scikit-learn | Machine learning and NLP |
-| TF-IDF | Text feature extraction |
-| NMF | Topic modelling |
-| Logistic Regression | Sentiment classification |
-| Matplotlib | Data visualization |
-| Seaborn | Statistical visualization |
-| Plotly | Interactive visualization |
-| Streamlit | Interactive dashboard |
-| Joblib | Saving trained machine learning models |
-
-# Project Development – First Four Days
+# Development Progress
 
 ## Day 1 – Project Setup and Environment Configuration
 
-**Objective:** Establish the development environment and organize the project structure.
+### Completed Tasks
 
-### Completed activities
+- Created the ReviewRadar AI project structure.
+- Configured the Python virtual environment.
+- Installed and verified the required Python libraries.
+- Downloaded and organized the dataset.
+- Created folders for notebooks, raw data, processed data, reports, and visualizations.
+- Created the initial GitHub repository structure.
 
-- Created the ReviewRadar AI project.
-- Configured a Python virtual environment.
-- Installed the required Python libraries.
-- Organized project directories.
-- Created the initial README documentation.
-- Configured `.gitignore` to exclude unnecessary files and datasets from Git tracking.
+### Project Structure
 
-### Environment details
+```text
+ReviewRadar-AI/
+│
+├── data/
+│   ├── raw/
+│   │   └── clothing_reviews.csv
+│   │
+│   └── processed/
+│
+├── notebooks/
+│
+├── reports/
+│   └── figures/
+│
+├── models/
+│
+├── README.md
+├── .gitignore
+└── .venv/
+```
 
-- Python 3.13.17
-- Virtual environment: `.venv`
-- IDE: Visual Studio Code
+### Result
 
-### Project paths
-
-| Item | Path |
-|---|---|
-| Project root | `ReviewRadar-AI/` |
-| Virtual environment | `.venv/` |
-| Raw dataset folder | `data/raw/` |
-| Processed data folder | `data/processed/` |
-| Python scripts | `notebooks/` |
-| Reports | `reports/` |
-| Visualizations | `reports/figures/` |
-| Documentation | `README.md` |
-| Dependencies | `requirements.txt` |
-
-### Result summary
-
-Successfully configured the Python development environment and prepared the project structure for data analysis and machine learning development.
+The development environment was successfully configured, and the project was ready for data analysis.
 
 ---
 
 ## Day 2 – Data Cleaning and Exploratory Data Analysis
 
-**Objective:** Understand the dataset, clean the data, and identify initial customer satisfaction patterns.
+### Completed Tasks
 
-### Completed activities
-
-- Loaded the Women's E-Commerce Clothing Reviews dataset.
-- Inspected dataset dimensions and column information.
+- Loaded the original dataset using Pandas.
+- Inspected dataset structure and data types.
 - Identified missing values.
 - Checked duplicate records.
-- Prepared cleaned review data.
+- Cleaned and prepared review text.
 - Analyzed customer rating distributions.
-- Examined product recommendation patterns.
-- Compared average ratings across product departments and classes.
+- Analyzed recommendation patterns.
+- Compared customer ratings across product departments and classes.
 - Generated exploratory data visualizations.
 
-### Dataset cleaning results
+### Results Summary
 
-| Metric | Result |
+| Analysis | Result |
 |---|---:|
-| Total records | 23,486 |
-| Duplicate records | 0 |
+| Total reviews | 23,486 |
+| Original columns | 11 |
+| Duplicate rows | 0 |
 | Missing review texts | 845 |
 | Missing titles | 3,810 |
-| Missing Division Name | 14 |
-| Missing Department Name | 14 |
-| Missing Class Name | 14 |
-| Records after cleaning | 23,486 |
+| Missing department values | 14 |
+| Average rating | 4.2 |
+| Recommended reviews | 19,314 |
+| Non-recommended reviews | 4,172 |
 
-Missing review texts were retained in the cleaned dataset but excluded from text-based NLP analysis.
+Approximately 82.2% of customers recommended the products.
 
-### Customer rating distribution
+### Average Rating by Department
 
-| Rating | Number of Reviews |
+| Department | Average Rating |
 |---|---:|
-| 1 Star | 842 |
-| 2 Stars | 1,565 |
-| 3 Stars | 2,871 |
-| 4 Stars | 5,077 |
-| 5 Stars | 13,131 |
+| Bottoms | 4.29 |
+| Intimate | 4.28 |
+| Jackets | 4.26 |
+| Tops | 4.17 |
+| Dresses | 4.15 |
+| Trend | 3.82 |
 
-### Key findings
+The Trend department had the lowest average rating, but it also had a relatively small number of reviews (119).
 
-- Overall average rating: **4.2**
-- Recommended reviews: **19,314**
-- Non-recommended reviews: **4,172**
-- Approximately **82.2%** of customers recommended the products.
-
-### Department-level analysis
-
-| Department | Reviews | Average Rating |
-|---|---:|---:|
-| Bottoms | 3,799 | 4.29 |
-| Intimate | 1,735 | 4.28 |
-| Jackets | 1,032 | 4.26 |
-| Tops | 10,468 | 4.17 |
-| Dresses | 6,319 | 4.15 |
-| Trend | 119 | 3.82 |
-
-The Trend department had the lowest average rating, although its review volume was relatively small.
-
-### Generated files and report paths
-
-**Python script:**
-
-`notebooks/cleaning_eda.py`
+### Generated Reports
 
 **Processed datasets:**
 
-- `data/processed/cleaned_reviews.csv`
-- `data/processed/department_summary.csv`
-- `data/processed/class_summary.csv`
+```text
+data/processed/cleaned_reviews.csv
+data/processed/department_summary.csv
+data/processed/class_summary.csv
+```
 
 **Visualizations:**
 
-- `reports/figures/rating_distribution.png`
-- `reports/figures/recommendation_distribution.png`
-- `reports/figures/department_ratings.png`
-- `reports/figures/class_ratings.png`
+```text
+reports/figures/rating_distribution.png
+reports/figures/recommendation_distribution.png
+reports/figures/department_ratings.png
+reports/figures/class_ratings.png
+```
 
-### Result summary
+### Result
 
-Successfully completed data cleaning and EDA, identifying overall customer satisfaction patterns, recommendation distributions, and department-level rating differences.
+The dataset was successfully cleaned and explored. Initial customer satisfaction patterns and differences between product departments were identified.
 
 ---
 
-## Day 3 – Customer Feedback Theme Analysis and Issue Prioritization
+## Day 3 – Topic Modelling and Issue Prioritization
 
-**Objective:** Discover recurring customer feedback themes using NLP and identify the issues requiring the most business attention.
+### Completed Tasks
 
-### 1. Text Processing and Feature Extraction
+- Applied TF-IDF vectorization to customer review text.
+- Used Non-negative Matrix Factorization (NMF) for topic modelling.
+- Identified eight recurring customer feedback topics.
+- Extracted representative keywords for each topic.
+- Assigned reviews to their dominant topics.
+- Interpreted and manually labelled the identified topics.
+- Analyzed average ratings and non-recommendation percentages by topic.
+- Developed a project-defined issue prioritization score.
+- Generated an issue priority visualization.
 
-Applied TF-IDF (Term Frequency–Inverse Document Frequency) to convert customer review text into numerical features.
+### Topic Modelling Configuration
 
-Configuration:
+| Parameter | Value |
+|---|---|
+| Algorithm | NMF |
+| Vectorization | TF-IDF |
+| Maximum features | 3,000 |
+| Number of topics | 8 |
+| N-gram range | (1, 2) |
+| Random state | 42 |
+| Maximum iterations | 400 |
 
-- Maximum features: 3,000
-- N-gram range: (1, 2)
-- Minimum document frequency: 5
-- Maximum document frequency: 90%
-- Stop words: English
+### Identified Customer Feedback Topics
 
-**Results:**
-
-| Metric | Result |
-|---|---:|
-| Total reviews | 23,486 |
-| Usable reviews | 22,641 |
-| Excluded empty reviews | 845 |
-| TF-IDF features | 3,000 |
-| TF-IDF matrix | 22,641 × 3,000 |
-
-### 2. Topic Modelling Using NMF
-
-Applied Non-negative Matrix Factorization (NMF) to discover recurring themes in customer reviews.
-
-Model configuration:
-
-- Number of topics: 8
-- Random state: 42
-- Initialization: `nndsvda`
-- Maximum iterations: 400
-
-Eight topics were discovered and assigned descriptive business labels through manual interpretation of their keywords and representative reviews.
-
-### Discovered customer feedback themes
-
-| Topic | Theme | Review Count | Percentage |
+| Topic ID | Topic Label | Reviews | Percentage |
 |---|---|---:|---:|
 | 1 | General Product Feedback | 3,975 | 17.56% |
 | 2 | Dress Design & Appearance | 3,645 | 16.10% |
@@ -255,59 +192,48 @@ Eight topics were discovered and assigned descriptive business labels through ma
 | 6 | Shirt Design & Material | 1,551 | 6.85% |
 | 7 | Sweater & Outerwear Feedback | 1,706 | 7.54% |
 | 8 | Product Quality & Appearance | 2,073 | 9.16% |
-| **Total** | **8 Topics** | **22,641** | **100%** |
 
-### 3. Topic Satisfaction Analysis
+All 22,641 usable text reviews were assigned to a topic.
 
-Analyzed average customer ratings and non-recommendation percentages for each discovered topic.
+### Topic Satisfaction Analysis
 
-| Customer Feedback Theme | Average Rating | Non-Recommended Count | Non-Recommended % |
-|---|---:|---:|---:|
-| General Product Feedback | 3.59 | 1,440 | 36.23% |
-| Dress Design & Appearance | 4.14 | 728 | 19.97% |
-| Comfort & Wearability | 4.64 | 274 | 6.16% |
-| Size Accuracy & Fit | 4.42 | 208 | 10.01% |
-| Sizing & Size Selection | 4.06 | 598 | 18.88% |
-| Shirt Design & Material | 3.97 | 371 | 23.92% |
-| Sweater & Outerwear Feedback | 4.20 | 321 | 18.82% |
-| Product Quality & Appearance | 4.53 | 161 | 7.77% |
+| Topic | Average Rating | Non-recommended |
+|---|---:|---:|
+| General Product Feedback | 3.59 | 36.23% |
+| Dress Design & Appearance | 4.14 | 19.97% |
+| Comfort & Wearability | 4.64 | 6.16% |
+| Size Accuracy & Fit | 4.42 | 10.01% |
+| Sizing & Size Selection | 4.06 | 18.88% |
+| Shirt Design & Material | 3.97 | 23.92% |
+| Sweater & Outerwear Feedback | 4.20 | 18.82% |
+| Product Quality & Appearance | 4.53 | 7.77% |
 
-### Key findings
+### Key Findings
 
-- General Product Feedback has the highest non-recommendation percentage (36.23%) and lowest average rating (3.59).
-- Shirt Design & Material has a 23.92% non-recommendation rate.
-- Sizing & Size Selection also indicates potential customer dissatisfaction.
-- Comfort & Wearability has the highest average rating (4.64).
-- Product Quality & Appearance has a relatively low non-recommendation rate (7.77%).
+- General Product Feedback showed the highest dissatisfaction, with a 36.23% non-recommendation rate.
+- Shirt Design & Material also showed an area of concern, with a 23.92% non-recommendation rate.
+- Sizing & Size Selection had an 18.88% non-recommendation rate.
+- Comfort & Wearability received the highest average rating of 4.64.
+- Product Quality & Appearance also received a relatively high average rating of 4.53.
 
-### 4. Representative Review Extraction
+### Issue Prioritization
 
-Extracted representative reviews for each discovered topic.
+A project-defined priority score was developed using:
 
-This provides qualitative evidence to help interpret the numerical topic analysis and understand the customer experiences behind each theme.
-
-### 5. Issue Prioritization
-
-Developed a weighted scoring method to rank customer feedback themes based on:
-
-- Review volume
-- Non-recommendation percentage
-- Rating dissatisfaction
-
-**Project-defined priority formula:**
-
-`Priority Score = (0.4 × V) + (0.4 × N) + (0.2 × D)`
+```text
+Priority Score = 0.4V + 0.4N + 0.2D
+```
 
 Where:
 
-- V = Normalized review volume (0–100)
-- N = Non-recommendation percentage (0–100)
-- D = Normalized rating dissatisfaction (0–100)
+- V = Normalized review volume.
+- N = Non-recommendation percentage.
+- D = Normalized rating dissatisfaction.
 
-### Issue priority ranking
+### Issue Priority Ranking
 
-| Rank | Customer Feedback Theme | Priority Score |
-|---:|---|---:|
+| Rank | Topic | Priority Score |
+|---|---|---:|
 | 1 | General Product Feedback | 93.50 |
 | 2 | Dress Design & Appearance | 56.84 |
 | 3 | Sizing & Size Selection | 50.32 |
@@ -317,139 +243,134 @@ Where:
 | 7 | Size Accuracy & Fit | 16.60 |
 | 8 | Product Quality & Appearance | 11.45 |
 
-### Business interpretation
+The score is a project-defined prioritization heuristic, not a validated measure of business risk.
 
-General Product Feedback received the highest priority score. Representative reviews indicate complaints involving fabric quality, product fit, and value for money.
+### Generated Reports
 
-Dress Design & Appearance and Sizing & Size Selection also deserve attention based on their review volumes and dissatisfaction indicators.
+**Processed datasets:**
 
-This score is a project-defined decision-support heuristic, not a statistically validated business-risk measurement. The results identify associations and potential areas for investigation rather than proving the causes of dissatisfaction.
-
-### Generated files and report paths
-
-**Python scripts:**
-
-- `notebooks/theme_analysis.py`
-- `notebooks/issue_prioritization.py`
-- `notebooks/visualize_priorities.py`
-
-**Processed datasets and analysis reports:**
-
-- `data/processed/topic_summary.csv`
-- `data/processed/review_topic_assignments.csv`
-- `data/processed/representative_reviews.csv`
-- `data/processed/topic_satisfaction.csv`
-- `data/processed/issue_priority_report.csv`
+```text
+data/processed/topic_summary.csv
+data/processed/review_topic_assignments.csv
+data/processed/representative_reviews.csv
+data/processed/topic_satisfaction.csv
+data/processed/issue_priority_report.csv
+```
 
 **Visualization:**
 
-- `reports/figures/issue_priority.png`
+```text
+reports/figures/issue_priority.png
+```
 
-### Result summary
+### Result
 
-Successfully discovered eight customer feedback themes using NMF, analyzed satisfaction across the topics, extracted representative reviews, and generated a weighted issue-priority ranking with a corresponding visualization.
+Eight recurring customer feedback topics were identified, evaluated, and prioritized. The analysis provides a structured way to identify areas that may require business attention.
 
 ---
 
-## Day 4 – Sentiment Classification Using Machine Learning
+## Day 4 – Customer Sentiment Classification
 
-**Objective:** Develop a machine learning model that classifies customer reviews into positive, neutral, and negative sentiment categories.
+### Completed Tasks
 
-### 1. Sentiment Label Creation
+- Prepared customer review text for sentiment classification.
+- Converted product ratings into sentiment categories.
+- Split the dataset into training and testing sets.
+- Applied TF-IDF vectorization.
+- Trained a Logistic Regression classification model.
+- Evaluated model performance using accuracy, precision, recall, and F1-score.
+- Generated a confusion matrix.
+- Saved the trained model and evaluation reports.
 
-The dataset does not contain a manually verified sentiment label. Therefore, customer ratings are used to create rating-based sentiment categories.
+### Sentiment Labelling Strategy
+
+Customer ratings were converted into three sentiment categories:
 
 | Rating | Sentiment |
 |---|---|
-| 1–2 Stars | Negative |
-| 3 Stars | Neutral |
-| 4–5 Stars | Positive |
+| 1–2 stars | Negative |
+| 3 stars | Neutral |
+| 4–5 stars | Positive |
 
-These labels represent rating-based sentiment proxies rather than manually annotated sentiment.
+These are rating-derived sentiment labels rather than manually annotated sentiment categories.
 
-### 2. Text Preparation
+### Dataset Distribution
 
-- Loaded the cleaned customer review dataset.
-- Selected `Review_Text_Clean` and `Rating`.
-- Removed missing ratings and empty review texts.
-- Created sentiment labels from customer ratings.
-- Prepared the text features and target labels for classification.
-
-### 3. Training and Testing
-
-Used an 80:20 training/testing split.
-
-| Dataset | Proportion |
+| Sentiment | Number of Reviews |
 |---|---:|
-| Training data | 80% |
-| Testing data | 20% |
+| Positive | 17,448 |
+| Neutral | 2,823 |
+| Negative | 2,370 |
+| **Total** | **22,641** |
 
-Used stratified splitting to preserve sentiment class proportions across the training and testing sets.
+### Model Configuration
 
-### 4. Machine Learning Model
-
-**TF-IDF + Logistic Regression**
-
-TF-IDF converts review text into numerical features, while Logistic Regression learns patterns that help classify the reviews into sentiment categories.
-
-Model configuration:
-
-| Parameter | Value |
+| Component | Configuration |
 |---|---|
-| Maximum TF-IDF features | 5,000 |
+| Feature extraction | TF-IDF |
+| Maximum features | 5,000 |
 | N-gram range | (1, 2) |
-| Minimum document frequency | 3 |
-| Maximum document frequency | 90% |
-| Class weighting | Balanced |
+| Classifier | Logistic Regression |
 | Maximum iterations | 1,000 |
+| Class weighting | Balanced |
+| Training/testing split | 80% / 20% |
 | Random state | 42 |
 
-A Scikit-learn pipeline keeps text vectorization and model training together. The TF-IDF vocabulary is learned from training data only.
+### Model Evaluation Results
 
-### 5. Model Evaluation
+<details>
+<summary>Actual evaluation results</summary>
 
-The model is evaluated using:
+**Accuracy: 76.97%**
 
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- Confusion matrix
+| Sentiment | Precision | Recall | F1-score | Support |
+|---|---:|---:|---:|---:|
+| Negative | 0.47 | 0.60 | 0.53 | 474 |
+| Neutral | 0.32 | 0.47 | 0.38 | 565 |
+| Positive | 0.95 | 0.84 | 0.89 | 3,490 |
+| **Macro Average** | **0.58** | **0.64** | **0.60** | **4,529** |
+| **Weighted Average** | **0.82** | **0.77** | **0.79** | **4,529** |
 
-These metrics help evaluate the model's ability to recognize positive, neutral, and negative customer reviews.
+</details>
 
-**Execution status:** The sentiment classification script has been prepared. Actual model performance metrics will be added after successful execution and evaluation.
+### Key Findings
 
-### Generated files and report paths
+- The model achieved an overall accuracy of 76.97%.
+- Positive sentiment was classified most effectively, with an F1-score of 0.89.
+- Negative sentiment achieved an F1-score of 0.53.
+- Neutral sentiment was the most challenging category, with an F1-score of 0.38.
+- The difference in sentiment-class sizes indicates an imbalanced dataset.
 
-**Python script:**
+The results suggest that the model performs better on positive reviews than on neutral and negative reviews. Further model improvement and evaluation are recommended, especially for the minority sentiment categories.
 
-- `notebooks/sentiment_classification.py`
+### Generated Reports
 
 **Trained model:**
 
-- `models/sentiment_model.pkl`
+```text
+models/sentiment_model.pkl
+```
 
 **Evaluation reports:**
 
-- `reports/sentiment_classification_report.csv`
-- `reports/sentiment_metrics.json`
+```text
+reports/sentiment_classification_report.csv
+reports/sentiment_metrics.json
+```
 
 **Visualization:**
 
-- `reports/figures/sentiment_confusion_matrix.png`
+```text
+reports/figures/sentiment_confusion_matrix.png
+```
 
-These output files are generated when the sentiment classification script runs successfully.
+### Result
 
-### Result summary
-
-Implemented a rating-based sentiment classification workflow using TF-IDF and Logistic Regression. The workflow includes stratified train/test splitting, model training, classification metrics, confusion matrix generation, and model serialization.
-
-Actual evaluation results are pending execution.
+The TF-IDF and Logistic Regression sentiment classification pipeline was successfully trained and evaluated. The trained model and evaluation outputs were saved for future use in the ReviewRadar AI application.
 
 ---
 
-# Project Directory Structure
+# Complete Project Structure
 
 ```text
 ReviewRadar-AI/
@@ -468,15 +389,15 @@ ReviewRadar-AI/
 │       ├── topic_satisfaction.csv
 │       └── issue_priority_report.csv
 │
-├── models/
-│   └── sentiment_model.pkl
-│
 ├── notebooks/
 │   ├── cleaning_eda.py
 │   ├── theme_analysis.py
 │   ├── issue_prioritization.py
 │   ├── visualize_priorities.py
 │   └── sentiment_classification.py
+│
+├── models/
+│   └── sentiment_model.pkl
 │
 ├── reports/
 │   ├── sentiment_classification_report.csv
@@ -490,12 +411,9 @@ ReviewRadar-AI/
 │       ├── issue_priority.png
 │       └── sentiment_confusion_matrix.png
 │
-├── .gitignore
 ├── README.md
-└── requirements.txt
+└── .gitignore
 ```
-
-Note: Some Day 4 output files are created only after the classification script runs successfully. Raw and processed CSV datasets are excluded from Git tracking according to the project's `.gitignore` rules.
 
 # How to Run the Project
 
@@ -503,87 +421,57 @@ Note: Some Day 4 output files are created only after the classification script r
 
 ```bash
 git clone YOUR_GITHUB_REPOSITORY_URL
-```
-
-### 2. Navigate to the project directory
-
-```bash
 cd ReviewRadar-AI
 ```
 
-### 3. Create a virtual environment
-
-```bash
-python -m venv .venv
-```
-
-### 4. Activate the environment
+### 2. Activate the virtual environment
 
 Windows PowerShell:
 
 ```powershell
-.\.venv\Scripts\Activate.ps1
+.venv\Scripts\Activate.ps1
 ```
 
-### 5. Install dependencies
+### 3. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install pandas numpy scikit-learn matplotlib seaborn streamlit plotly joblib
 ```
 
-### 6. Run the analysis scripts
-
-Data cleaning and EDA:
+### 4. Run the analysis scripts
 
 ```bash
 python notebooks/cleaning_eda.py
-```
-
-Topic modelling:
-
-```bash
 python notebooks/theme_analysis.py
-```
-
-Issue prioritization:
-
-```bash
 python notebooks/issue_prioritization.py
-```
-
-Priority visualization:
-
-```bash
 python notebooks/visualize_priorities.py
-```
-
-Sentiment classification:
-
-```bash
 python notebooks/sentiment_classification.py
 ```
 
-Make sure the original dataset is available in `data/raw/` before running the scripts.
+# Current Project Status
 
-# Project Limitations
+| Development Stage | Status |
+|---|---|
+| Day 1 – Project Setup | Completed |
+| Day 2 – Data Cleaning & EDA | Completed |
+| Day 3 – Topic Modelling & Issue Prioritization | Completed |
+| Day 4 – Sentiment Classification | Completed |
 
-- Topic labels are manually interpreted descriptions of NMF-discovered topics.
-- Sentiment labels are derived from ratings and are not manually annotated.
-- The issue priority score is a project-defined heuristic.
-- Review themes and satisfaction measurements do not establish causal relationships.
-- The current dataset does not support time-based trend analysis in this project.
-- Model performance must be assessed using multiple evaluation metrics, not accuracy alone.
+# Limitations and Future Improvements
+
+- Sentiment labels are derived from star ratings and are not manually verified.
+- The dataset contains more positive reviews than negative and neutral reviews.
+- Neutral and negative sentiment classification requires further improvement.
+- Topic labels were interpreted and assigned manually after NMF topic extraction.
+- The priority score is a project-defined heuristic.
+- The available analysis does not establish causal relationships or time-based trends.
 
 # Author
 
 **Hamna Fazil**
 
-Aspiring Data Analyst | Business Intelligence | Machine Learning
+IT Undergraduate | Data Analytics | Machine Learning | Business Intelligence
 
-GitHub: [HamnaFazil](https://github.com/HamnaFazil)
+GitHub: https://github.com/HamnaFazil
 
-Portfolio: [Personal Portfolio](https://hamnafazil.github.io/HamnaFazil/)
-
----
-
-*ReviewRadar AI – Turning customer feedback into actionable business intelligence.*
+Portfolio: https://hamnafazil.github.io/HamnaFazil/
