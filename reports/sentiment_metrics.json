@@ -1,0 +1,6 @@
+{
+    "model": "TF-IDF + Logistic Regression",
+    "accuracy": 0.7697,
+    "training_samples": 18112,
+    "testing_samples": 4529
+}
